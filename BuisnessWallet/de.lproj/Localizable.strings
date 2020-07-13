@@ -1,0 +1,18 @@
+"PlaceholderFullName" = "Max Mustermann";
+"PlaceholderTelephone" = "01234 567890";
+"PlaceholderEmailAddress" = "Max.Mustermann@beispiel.de";
+"PlaceholderWebsite" = "https://www.beispiel.de";
+"PlaceholderDescription" = "Kurze Beschreibung ...";
+"PlaceholderAvatarImage" = "Profilbild (abgerundet)";
+"PlaceholderBackgroundImage" = "Hintergrundbild";
+"PlaceholderBackgroundColor" = "Hintergrundfarbe";
+
+"ButtonText" = "Erstellen & Speichern";
+"ButtonPhoto" = "Foto aufnehmen";
+"ButtonLibrary" = "Aus Fotoalbum";
+"ButtonRemove" = "Aktuelles löschen";
+"ButtonCancel" = "Abbrechen";
+"ButtonOkay" = "Okay";
+
+"TempErrorTitle" = "PassKit Fehler";
+"TempErrorBody" = "Karte enthält ungültige Daten";

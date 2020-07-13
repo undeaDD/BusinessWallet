@@ -1,0 +1,18 @@
+"PlaceholderFullName" = "John Doe";
+"PlaceholderTelephone" = "+44 113 496 0000";
+"PlaceholderEmailAddress" = "John.Doe@example.com";
+"PlaceholderWebsite" = "https://www.example.com";
+"PlaceholderDescription" = "short description ...";
+"PlaceholderAvatarImage" = "Avatar (rounded)";
+"PlaceholderBackgroundImage" = "Background image";
+"PlaceholderBackgroundColor" = "Background color";
+
+"ButtonText" = "Create & Export";
+"ButtonPhoto" = "Take Photo";
+"ButtonLibrary" = "Photo Library";
+"ButtonRemove" = "Remove Current";
+"ButtonCancel" = "Cancel";
+"ButtonOkay" = "Okay";
+
+"TempErrorTitle" = "PassKit Error";
+"TempErrorBody" = "Invalid Pass data supplied";
