@@ -1,0 +1,32 @@
+{
+  "formatVersion" : 1,
+  "passTypeIdentifier" : "pass.eu.deltasiege.buisnesswallet",
+  "teamIdentifier" : "AXLC3PQNC8",
+  "organizationName" : "Deltasiege.eu",
+  "serialNumber" : "829283",
+  "barcode" : {
+    "message" : "MECARD:N:Drees,Dominic;BDAY:19950222;TEL:015165143990;EMAIL:dominic.drees@live.de;;",
+    "format" : "PKBarcodeFormatQR",
+    "messageEncoding" : "iso-8859-1"
+  },
+  "description" : " ",
+  "logoText" : "  (Lars) Dominic Drees",
+  "labelColor" : "rgb(250, 250, 250)",
+  "foregroundColor" : "rgb(210, 210, 210)",
+  "backgroundColor" : "rgb(40, 40, 40)",
+  "storeCard" : {
+    "primaryFields" : [],
+    "secondaryFields" : [
+        {
+          "key" : "email",
+          "label" : "Email:",
+          "value" : "dominic.drees@live.de"
+        },
+        {
+          "key" : "phone",
+          "label" : "Telefon:",
+          "value" : "+49 151 651 43990"
+        }
+    ]
+  }
+}
