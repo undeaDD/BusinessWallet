@@ -7,19 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12C6B03224C1D33D00F82437 /* WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C6B03124C1D33D00F82437 /* WebView.swift */; };
 		12E3561824BC36D500D806AA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E3561724BC36D500D806AA /* AppDelegate.swift */; };
 		12E3561C24BC36D500D806AA /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E3561B24BC36D500D806AA /* StartView.swift */; };
 		12E3561F24BC36D500D806AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12E3561D24BC36D500D806AA /* Main.storyboard */; };
 		12E3562124BC36D600D806AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12E3562024BC36D600D806AA /* Assets.xcassets */; };
 		12E3562424BC36D600D806AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12E3562224BC36D600D806AA /* LaunchScreen.storyboard */; };
 		12E3562E24BC469200D806AA /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 12E3562D24BC469200D806AA /* IQKeyboardManagerSwift */; };
-		12E3562F24BC5CFA00D806AA /* StoreCard.pkpass in Resources */ = {isa = PBXBuildFile; fileRef = 12E3562B24BC446A00D806AA /* StoreCard.pkpass */; };
 		12E3563124BC62F200D806AA /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E3563024BC62F200D806AA /* Cells.swift */; };
 		12E3563324BC666D00D806AA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E3563224BC666D00D806AA /* Extensions.swift */; };
 		12E3563924BCCD0900D806AA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 12E3563B24BCCD0900D806AA /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		12C6B03124C1D33D00F82437 /* WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebView.swift; sourceTree = "<group>"; };
 		12E3561424BC36D500D806AA /* BuisnessWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BuisnessWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12E3561724BC36D500D806AA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12E3561B24BC36D500D806AA /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
@@ -27,7 +28,6 @@
 		12E3562024BC36D600D806AA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		12E3562324BC36D600D806AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		12E3562524BC36D600D806AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		12E3562B24BC446A00D806AA /* StoreCard.pkpass */ = {isa = PBXFileReference; lastKnownFileType = file; path = StoreCard.pkpass; sourceTree = "<group>"; };
 		12E3563024BC62F200D806AA /* Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
 		12E3563224BC666D00D806AA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		12E3563A24BCCD0900D806AA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -67,12 +67,12 @@
 			children = (
 				12E3563024BC62F200D806AA /* Cells.swift */,
 				12E3561B24BC36D500D806AA /* StartView.swift */,
+				12C6B03124C1D33D00F82437 /* WebView.swift */,
 				12E3563224BC666D00D806AA /* Extensions.swift */,
 				12E3561724BC36D500D806AA /* AppDelegate.swift */,
 				12E3562224BC36D600D806AA /* LaunchScreen.storyboard */,
 				12E3561D24BC36D500D806AA /* Main.storyboard */,
 				12E3562024BC36D600D806AA /* Assets.xcassets */,
-				12E3562B24BC446A00D806AA /* StoreCard.pkpass */,
 				12E3563B24BCCD0900D806AA /* Localizable.strings */,
 				12E3562524BC36D600D806AA /* Info.plist */,
 			);
@@ -147,7 +147,6 @@
 				12E3562124BC36D600D806AA /* Assets.xcassets in Resources */,
 				12E3561F24BC36D500D806AA /* Main.storyboard in Resources */,
 				12E3563924BCCD0900D806AA /* Localizable.strings in Resources */,
-				12E3562F24BC5CFA00D806AA /* StoreCard.pkpass in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				12E3561C24BC36D500D806AA /* StartView.swift in Sources */,
+				12C6B03224C1D33D00F82437 /* WebView.swift in Sources */,
 				12E3563124BC62F200D806AA /* Cells.swift in Sources */,
 				12E3561824BC36D500D806AA /* AppDelegate.swift in Sources */,
 				12E3563324BC666D00D806AA /* Extensions.swift in Sources */,

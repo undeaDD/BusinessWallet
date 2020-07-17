@@ -1,21 +1,72 @@
 import UIKit
 import PassKit
+import MessageUI
+import StoreKit
 
 class StartView: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var editPhoto: (UIImage?, String)?
     
+    #warning("missing localisations")
+    #warning("missing url parameters & wrong tableviewcell -> image to color")
+    #warning("format date from server")
+    #warning("implement description on server side and add to url parameter")
+    #warning("app icon missing")
+    #warning("license and imprint html files missing")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Business Wallet"
+        navigationItem.backButtonTitle = "Back"
         tableView.dataSource = self
         tableView.delegate = self
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let dest = segue.destination as? WebView
+        dest?.type = sender as? Int ?? -1
+    }
+    
     @IBAction func showMenu(_ sender: UIBarButtonItem) {
         let sheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        #warning("[WIP] implement simple menu: rate app, feedback, licenses, imprint, dataprotection, source github, ...")
+        sheet.addAction(UIAlertAction(title: "Rate Business Wallet", style: .default, handler: { _ in
+            if let scene = UIApplication.shared.connectedScenes.filter({ $0.activationState == .foregroundActive }).first as? UIWindowScene {
+                SKStoreReviewController.requestReview(in: scene)
+            }
+        }))
+        sheet.addAction(UIAlertAction(title: "Send Feedback", style: .default, handler: { _ in
+            self.sendMail()
+        }))
+        sheet.addAction(UIAlertAction(title: "Read Imprint", style: .default, handler: { _ in
+            self.performSegue(withIdentifier: "webView", sender: 0)
+        }))
+        sheet.addAction(UIAlertAction(title: "Show Licenses", style: .default, handler: { _ in
+            self.performSegue(withIdentifier: "webView", sender: 1)
+        }))
         sheet.addAction(UIAlertAction(title: NSLocalizedString("ButtonCancel", comment: ""), style: .cancel, handler: nil))
         present(sheet, animated: true)
+    }
+
+}
+
+extension StartView: MFMailComposeViewControllerDelegate {
+
+    func sendMail() {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(["dominic.drees@live.de"])
+            mail.setSubject("Business Wallet Feedback")
+            present(mail, animated: true)
+        } else {
+            let alertView = UIAlertController(title: "cant send mail", message: "this device has no mail account.", preferredStyle: .alert)
+            alertView.addAction(UIAlertAction(title: NSLocalizedString("ButtonOkay", comment: ""), style: .cancel, handler: nil))
+            present(alertView, animated: true)
+        }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
     }
 
 }
@@ -34,6 +85,10 @@ extension StartView: UITableViewDelegate, UITableViewDataSource {
         return section == 0 ? 8 : 1
     }
 
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return " "
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch (indexPath.section, indexPath.row) {
         case (0, 5), (0, 6):
@@ -74,11 +129,11 @@ extension StartView: UITableViewDelegate, UITableViewDataSource {
             cell?.textfield.text = UserDefaults.standard.string(forKey: UserDefaultKeys.emailAddress.rawValue)
         case (0, 3):
             let cell = cell as? TextCell
-            cell?.icon.image = UIImage(named: UIImageKeys.website.rawValue)
-            cell?.textfield.placeholder = NSLocalizedString("PlaceholderWebsite", comment: "")
+            cell?.icon.image = UIImage(named: UIImageKeys.birthday.rawValue)
+            cell?.textfield.placeholder = NSLocalizedString("PlaceholderBirthday", comment: "")
             cell?.textfield.tag = 3
             cell?.textfield.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-            cell?.textfield.text = UserDefaults.standard.string(forKey: UserDefaultKeys.website.rawValue)
+            cell?.textfield.text = UserDefaults.standard.string(forKey: UserDefaultKeys.birthday.rawValue)
         case (0, 4):
             let cell = cell as? TextCell
             cell?.icon.image = UIImage(named: UIImageKeys.description.rawValue)
@@ -124,7 +179,10 @@ extension StartView: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.cellForRow(at: indexPath) as? TextCell
             cell?.textfield.becomeFirstResponder()
         case (1, _):
-            exportPass()
+            let cell = tableView.cellForRow(at: indexPath) as? ButtonCell
+            cell?.label.isHidden = true
+            cell?.indicator.isHidden = false
+            exportPass(cell)
         default:
             fatalError()
         }
@@ -140,7 +198,7 @@ extension StartView: UITableViewDelegate, UITableViewDataSource {
         case 2:
             UserDefaults.standard.set(sender.text, forKey: UserDefaultKeys.emailAddress.rawValue)
         case 3:
-            UserDefaults.standard.set(sender.text, forKey: UserDefaultKeys.website.rawValue)
+            UserDefaults.standard.set(sender.text, forKey: UserDefaultKeys.birthday.rawValue)
         case 4:
             UserDefaults.standard.set(sender.text, forKey: UserDefaultKeys.description.rawValue)
         default:
@@ -218,25 +276,40 @@ extension StartView: UIImagePickerControllerDelegate, UINavigationControllerDele
 
 extension StartView: PKAddPassesViewControllerDelegate {
     
-    func exportPass() {
+    func exportPass(_ cell: ButtonCell?) {
         if PKPassLibrary.isPassLibraryAvailable() {
-            #warning("[WIP] Add small remote Server to handle pkpass signing OR build ios side system with openssl that signs the pkpass on device ( apple may not like that though :S )")
-            if let file = Bundle.main.url(forResource: "StoreCard", withExtension: "pkpass"),
-               let data = try? Data(contentsOf: file),
-               let pass = try? PKPass(data: data),
-               let passView = PKAddPassesViewController(pass: pass) {
-                passView.delegate = self
-                present(passView, animated: true)
-                return
-            }
+            
+            let name = UserDefaults.standard.string(forKey: UserDefaultKeys.fullName.rawValue)?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "-"
+            let phone = UserDefaults.standard.string(forKey: UserDefaultKeys.telephone.rawValue)?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "-"
+            let mail = UserDefaults.standard.string(forKey: UserDefaultKeys.emailAddress.rawValue)?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "-"
+            let birthday = UserDefaults.standard.string(forKey: UserDefaultKeys.birthday.rawValue)?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "-"
+            
+            let url = URL(string: "https://us-central1-ds-deltasiege.cloudfunctions.net/app/pass?name=\(name)&phone=\(phone)&mail=\(mail)&birthday=\(birthday)&foregroundColor=rgb(210,210,210)&backgroundColor=rgb(40,40,40)&labelColor=rgb(250,250,250)")!
+            
+            URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+                DispatchQueue.main.async {
+                    guard error == nil,
+                          let data = data,
+                          let pass = try? PKPass(data: data),
+                          let passView = PKAddPassesViewController(pass: pass)
+                          else {
+                        let alertView = UIAlertController(title: NSLocalizedString("TempErrorTitle", comment: ""), message: NSLocalizedString("TempErrorBody", comment: ""), preferredStyle: .alert)
+                        alertView.addAction(UIAlertAction(title: NSLocalizedString("ButtonOkay", comment: ""), style: .cancel, handler: nil))
+                        self.present(alertView, animated: true)
+                        cell?.label.isHidden = false
+                        cell?.indicator.isHidden = true
+                        return
+                    }
+
+                    passView.delegate = self
+                    self.present(passView, animated: true)
+                    cell?.label.isHidden = false
+                    cell?.indicator.isHidden = true
+                }
+            }).resume()
         }
-        
-        #warning("temp -> remove later")
-        let alertView = UIAlertController(title: NSLocalizedString("TempErrorTitle", comment: ""), message: NSLocalizedString("TempErrorBody", comment: ""), preferredStyle: .alert)
-        alertView.addAction(UIAlertAction(title: NSLocalizedString("ButtonOkay", comment: ""), style: .cancel, handler: nil))
-        present(alertView, animated: true)
     }
-    
+
     func addPassesViewControllerDidFinish(_ controller: PKAddPassesViewController) {
         controller.dismiss(animated: true)
     }

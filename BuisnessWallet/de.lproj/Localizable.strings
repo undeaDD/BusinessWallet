@@ -1,7 +1,7 @@
 "PlaceholderFullName" = "Max Mustermann";
 "PlaceholderTelephone" = "01234 567890";
 "PlaceholderEmailAddress" = "Max.Mustermann@beispiel.de";
-"PlaceholderWebsite" = "https://www.beispiel.de";
+"PlaceholderBirthday" = "01.01.2000";
 "PlaceholderDescription" = "Kurze Beschreibung ...";
 "PlaceholderAvatarImage" = "Profilbild (abgerundet)";
 "PlaceholderBackgroundImage" = "Hintergrundbild";

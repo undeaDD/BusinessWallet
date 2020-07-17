@@ -1,7 +1,7 @@
 "PlaceholderFullName" = "John Doe";
 "PlaceholderTelephone" = "+44 113 496 0000";
 "PlaceholderEmailAddress" = "John.Doe@example.com";
-"PlaceholderWebsite" = "https://www.example.com";
+"PlaceholderBirthday" = "01/01/2000";
 "PlaceholderDescription" = "short description ...";
 "PlaceholderAvatarImage" = "Avatar (rounded)";
 "PlaceholderBackgroundImage" = "Background image";

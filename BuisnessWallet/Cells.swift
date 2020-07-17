@@ -23,5 +23,6 @@ class ColorCell: UITableViewCell {
 class ButtonCell: UITableViewCell {
     static let identifier = "buttonCell"
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
 }
 

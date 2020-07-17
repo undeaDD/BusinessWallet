@@ -17,7 +17,7 @@ enum UserDefaultKeys: String {
     case fullName     = "userFullName"
     case telephone    = "userPhoneNumber"
     case emailAddress = "userEmailAddress"
-    case website      = "userWebsite"
+    case birthday     = "userBirthday"
     case description  = "userDescription"
     
     case avatarImage     = "userAvatarImage"
@@ -29,7 +29,7 @@ enum UIImageKeys: String {
     case fullName     = "signature"
     case telephone    = "phone"
     case emailAddress = "envelope-open-text"
-    case website      = "server"
+    case birthday     = "birthday-cake"
     case description  = "award"
     
     case avatarImage     = "user-circle"

@@ -25,7 +25,7 @@
             </objects>
             <point key="canvasLocation" x="-741" y="139"/>
         </scene>
-        <!--Business Wallet-->
+        <!--Start View-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="StartView" customModule="BuisnessWallet" customModuleProvider="target" sceneMemberID="viewController">
@@ -195,10 +195,20 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="d2J-Zw-nYe">
+                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <color key="backgroundColor" name="AccentColor"/>
                                             <constraints>
+                                                <constraint firstItem="d2J-Zw-nYe" firstAttribute="top" secondItem="eU0-LJ-njV" secondAttribute="top" id="0eQ-3J-2ci"/>
                                                 <constraint firstAttribute="trailing" secondItem="dgO-uC-ImZ" secondAttribute="trailing" id="2bF-N4-cZm"/>
+                                                <constraint firstItem="d2J-Zw-nYe" firstAttribute="leading" secondItem="eU0-LJ-njV" secondAttribute="leading" id="LhG-cJ-p3J"/>
+                                                <constraint firstAttribute="trailing" secondItem="d2J-Zw-nYe" secondAttribute="trailing" id="OTe-7L-Iys"/>
+                                                <constraint firstAttribute="bottom" secondItem="d2J-Zw-nYe" secondAttribute="bottom" id="hfj-Kn-KYa"/>
                                                 <constraint firstItem="dgO-uC-ImZ" firstAttribute="top" secondItem="eU0-LJ-njV" secondAttribute="top" id="l6y-7L-rE5"/>
                                                 <constraint firstItem="dgO-uC-ImZ" firstAttribute="leading" secondItem="eU0-LJ-njV" secondAttribute="leading" id="o5a-zP-YVf"/>
                                                 <constraint firstAttribute="bottom" secondItem="dgO-uC-ImZ" secondAttribute="bottom" id="tG5-lT-QLI"/>
@@ -206,6 +216,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" name="AccentColor"/>
                                         <connections>
+                                            <outlet property="indicator" destination="d2J-Zw-nYe" id="q5J-hg-6pl"/>
                                             <outlet property="label" destination="dgO-uC-ImZ" id="swO-D2-kLn"/>
                                         </connections>
                                     </tableViewCell>
@@ -221,7 +232,7 @@
                             <constraint firstItem="2G2-T6-ygn" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Tb4-Wd-OLU"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Business Wallet" id="lNq-GN-civ">
+                    <navigationItem key="navigationItem" id="lNq-GN-civ">
                         <barButtonItem key="rightBarButtonItem" image="ellipsis-h" id="39u-6N-iub">
                             <connections>
                                 <action selector="showMenu:" destination="BYZ-38-t0r" id="MXs-g7-NtQ"/>
@@ -230,11 +241,47 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="2G2-T6-ygn" id="mBZ-uo-a7n"/>
+                        <segue destination="CMz-f8-A00" kind="show" identifier="webView" id="uYJ-hw-L51"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="138.61607142857142"/>
+        </scene>
+        <!--Web View-->
+        <scene sceneID="hKW-cZ-lyh">
+            <objects>
+                <viewController id="CMz-f8-A00" customClass="WebView" customModule="BuisnessWallet" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Y5u-Cv-cWm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mTB-ay-3Qr">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="7mU-eq-U0t"/>
+                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="mTB-ay-3Qr" firstAttribute="top" secondItem="Y5u-Cv-cWm" secondAttribute="top" id="dFL-kw-XC3"/>
+                            <constraint firstItem="mTB-ay-3Qr" firstAttribute="trailing" secondItem="7mU-eq-U0t" secondAttribute="trailing" id="ebp-tG-Cwc"/>
+                            <constraint firstItem="mTB-ay-3Qr" firstAttribute="leading" secondItem="7mU-eq-U0t" secondAttribute="leading" id="fKd-qI-Cq8"/>
+                            <constraint firstAttribute="bottom" secondItem="mTB-ay-3Qr" secondAttribute="bottom" id="zMW-Y5-IoX"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="0P5-aH-Ma7"/>
+                    <connections>
+                        <outlet property="webView" destination="mTB-ay-3Qr" id="dI0-mY-0Tu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AfY-gV-LgE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="960.86956521739137" y="138.61607142857142"/>
         </scene>
     </scenes>
     <resources>
